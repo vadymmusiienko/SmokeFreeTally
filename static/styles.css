@@ -21,7 +21,7 @@ nav {
     left: 0;
     width: 100%;
     padding: 20px 100px;
-    background: seagreen;
+    background: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,9 +31,8 @@ nav {
 .logo {
     font-size: 32px;
     color: #fff;
-    text-decoration-line: line-through;
-    text-decoration-color: red;
     font-weight: 700;
+    text-decoration: none;
 }
 
 .navbar a {
@@ -58,31 +57,4 @@ nav {
 
 .navbar a:hover::before {
     width: 100%;
-}
-
-/* drop down */
-.dropdown {
-    position: relative;
-    display: inline-block;
-    margin-left: 40px;
-}
-
-.profile-image{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.dropdown-menu {
-    position: absolute;
-    left: 0;
-    top: calc(100% + .25rem);
-    padding: .75rem;
-    background-color: aqua;
-}   
-
-.dropdown-menu a{
-    position: relative;
-    
 }
