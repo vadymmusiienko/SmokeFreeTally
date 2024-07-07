@@ -4,11 +4,21 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Block for the title -->
     <title>
         SmokeFreeTally: {% block title %}{% endblock %}
     </title>
-    <link rel="stylesheet" href="/static/styles.css">
+
+    <!-- Block for the stylesheet -->
+    {% block styles %}
+        <link rel="stylesheet" href="/static/styles.css">
+    {% endblock %}
+
     <script src="/static/scripts.js"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch+Pop&display=swap" rel="stylesheet">
 
 </head>
 <body>

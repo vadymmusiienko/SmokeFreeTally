@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+body{
+    min-height: 100vh;
+    font-family: "Rubik Glitch Pop", system-ui;
+    user-select: none;
+}
+
+/* login css */
+.page{
+    background-image: url("/static/background.jpg");
+    background-size: cover; /* This ensures the image covers the whole screen */
+    background-position: center; /* This centers the image */
+    background-repeat: no-repeat; /* This prevents the image from repeating */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container-login{
+    background: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+    min-width: 350px;
+    height: 70vh;
+    width: 50vw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.container-login > h1{
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.container-login > p{
+    font-size: small;
+    width: 60%;
+    padding: 15px 40px;
+    margin: 0 auto;
+}
+
+::placeholder{
+    color: #fff;
+}
+
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-form > input{
+    width: 70%;
+    padding: 15px 5px;
+    margin: 5px 0 10px 0;
+    border: none;
+    text-decoration: none;
+    background: none;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    outline: none;
+}
+
+.login-form > input::placeholder{
+    font-size: 1rem;
+}
+
+.login-form > input:focus::placeholder{
+    color: #808080;
+}
+
+.login-form > input:focus{
+    border-bottom: 2px solid #808080;
+    color: #808080;
+}
+
+.login-extra{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.login-extra > a,
+.remember > label{
+    
+    text-align: right;
+    font-size: 0.8rem;
+    padding: 15px 0;
+    white-space: nowrap;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.login-extra > a:hover,
+.remember:hover{
+    opacity: 0.7;
+}
+
+.remember{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.remember > label{
+    padding-left: 25px;
+    position: relative;
+}
+
+.remember > input[type="checkbox"]{
+    display: none;
+}
+
+.remember > label::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    border: 1px solid #fff;
+    background: transparent;
+}
+
+.remember > input[type="checkbox"]:checked + label::before{
+    content: '✔';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.login-button{
+    width: 70%;
+    padding: 15px;
+    border: none;
+    background-color: #fff;
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.login-button:hover{
+    opacity: 0.7;
+}
+
+.register-button{
+    width: 70%;
+    padding: 15px;
+    border: 2px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.register-button:hover{
+    background-color: rgb(255, 255, 255, 0.2);
+}
+
+@media only screen and (max-width: 880px) {
+
+    .login-extra {
+        width: 80%;
+        
+    }
+}
+
+/* Responsive design */
+@media only screen and (max-width: 780px) {
+    .container-login > p{
+        display: none;
+    }
+
+    .container-login > h1{
+        margin-bottom: 7%;
+    }
+
+    .login-extra {
+        width: 100%;
+        
+    }
+}

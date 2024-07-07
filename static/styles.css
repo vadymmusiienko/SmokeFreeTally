@@ -8,14 +8,15 @@
 body{
     min-height: 100vh;
     font-family: Arial, sans-serif;
+    user-select: none;
 }
 
+/* Nav bar */
 nav {
     display: flex;
     align-items: center;
 }
 
-/* Nav bar */
 .header {
     position: absolute;
     top: 0;
@@ -61,116 +62,3 @@ nav {
 }
 
 
-/* login css */
-.page{
-    background-image: url("/static/background.jpg");
-    background-size: cover; /* This ensures the image covers the whole screen */
-    background-position: center; /* This centers the image */
-    background-repeat: no-repeat; /* This prevents the image from repeating */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-}
-
-.container-login{
-    background: rgba(0, 0, 0, 0.5);
-    padding: 40px;
-    border-radius: 10px;
-    color: #fff;
-    text-align: center;
-    min-width: 350px;
-    height: 70vh;
-    width: 50vw;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.container-login > h1{
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-
-.container-login > p{
-    font-size: small;
-    width: 60%;
-    padding: 15px 40px;
-    margin: 0 auto;
-}
-
-::placeholder{
-    color: #fff;
-}
-
-
-.login-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
-.login-form input{
-    width: 70%;
-    padding: 15px 5px;
-    margin: 5px 0 10px 0;
-    border: none;
-    text-decoration: none;
-    background: none;
-    border-bottom: 2px solid #fff;
-    color: #fff;
-    outline: none;
-}
-
-::placeholder{
-    font-size: 1rem;
-}
-
-.login-form input:focus{
-    border-bottom: 2px solid #808080;
-}
-
-.forgot{
-    width: 70%;
-    text-align: right;
-    font-size: 0.8rem;
-    padding: 15px 0;
-    white-space: nowrap;
-    text-decoration: none;
-    color: #fff;
-}
-
-.forgot:hover{
-    opacity: 0.7;
-}
-
-.login-button{
-    width: 70%;
-    padding: 15px;
-    border: none;
-    background-color: #fff;
-    color: #000;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-.login-button:hover{
-    opacity: 0.7;
-}
-
-.register-button{
-    width: 70%;
-    padding: 15px;
-    border: 2px solid #fff;
-    background-color: transparent;
-    color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-@media only screen and (max-width: 768px) {
-    .container-login > p{
-        display: none;
-    }
-}

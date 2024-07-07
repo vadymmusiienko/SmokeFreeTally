@@ -4,6 +4,9 @@
     Login
 {% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" href="/static/login.css">
+{% endblock %}
 
 {% block main %}
     <div class="page">
@@ -18,7 +21,15 @@
                     <input type="text" name="username" placeholder="Username" minlength="5" maxlength="20" required autofocus>
                     <input type="password" name="password" placeholder="Password" minlength="5" maxlength="20" required>
 
-                    <a href="/templates/resetpassword.html" class="forgot">Forgot password?</a>
+                    <div class="login-extra">
+                        <div class="remember">
+                            <input type="checkbox" id="remember" name="remember" value="yes" checked>
+                            <label for="remember">Remember Me</label>
+                        </div>
+
+                        <a href="/templates/resetpassword.html" class="forgot">Forgot password?</a>
+                    </div>
+
                     <button class="login-button" type="submit">Login</button>
 
                     <!-- Register redirection form -->
