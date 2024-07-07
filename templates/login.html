@@ -13,13 +13,20 @@
                 Please log in to track your smoke-free journey, monitor your progress, and stay motivated with personalized insights and support.
             </p>
             <form action="/login" method="post">
+
                 <div class="login-form">
                     <input type="text" name="username" placeholder="Username" minlength="5" maxlength="20" required autofocus>
                     <input type="password" name="password" placeholder="Password" minlength="5" maxlength="20" required>
 
-                    <div class="register">Not a member? <a href="/templates/register.html"> Register here</a></div>
+                    <a href="/templates/resetpassword.html" class="forgot">Forgot password?</a>
                     <button class="login-button" type="submit">Login</button>
+
+                    <!-- Register redirection form -->
+                    <form action="/register" method="get">
+                        <button class="register-button" type="submit">Register here</a><button>
+                    </form>
                 </div>
+
             </form>
         </div>
     </div>

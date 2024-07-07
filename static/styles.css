@@ -105,7 +105,6 @@ nav {
 
 .login-form{
     display: flex;
-    height: 25vw;
     flex-direction: column;
     align-items: center;
     padding: 20px;
@@ -131,21 +130,18 @@ nav {
     border-bottom: 2px solid #808080;
 }
 
-.login-form a{
-    text-decoration: none;
-    color: #808080;
-}
-
-.login-form a:hover{
-    color: #606060;
-}
-
-.register{
+.forgot{
     width: 70%;
     text-align: right;
     font-size: 0.8rem;
     padding: 15px 0;
     white-space: nowrap;
+    text-decoration: none;
+    color: #fff;
+}
+
+.forgot:hover{
+    opacity: 0.7;
 }
 
 .login-button{
@@ -156,10 +152,21 @@ nav {
     color: #000;
     font-size: 1rem;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 .login-button:hover{
-    opacity: 0.8;
+    opacity: 0.7;
+}
+
+.register-button{
+    width: 70%;
+    padding: 15px;
+    border: 2px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {
