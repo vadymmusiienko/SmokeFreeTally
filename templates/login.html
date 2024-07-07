@@ -8,7 +8,19 @@
 {% block main %}
     <div class="page">
         <div class="container-login">
-            
+            <h1>Welcome Back!</h1>
+            <p>
+                Please log in to track your smoke-free journey, monitor your progress, and stay motivated with personalized insights and support.
+            </p>
+            <form action="/login" method="post">
+                <div class="login-form">
+                    <input type="text" name="username" placeholder="Username" minlength="5" maxlength="20" required autofocus>
+                    <input type="password" name="password" placeholder="Password" minlength="5" maxlength="20" required>
+
+                    <div class="register">Not a member? <a href="/templates/register.html"> Register here</a></div>
+                    <button class="login-button" type="submit">Login</button>
+                </div>
+            </form>
         </div>
     </div>
 {% endblock %}
