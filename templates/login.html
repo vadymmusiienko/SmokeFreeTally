@@ -8,18 +8,32 @@
     <link rel="stylesheet" href="/static/login.css">
 {% endblock %}
 
+{% block scripts %}{% endblock %}
+
 {% block main %}
     <div class="page">
         <div class="container-login">
-            <h1>Welcome Back!</h1>
+
+            {% block login_h1 %}
+                <h1>Welcome Back!</h1>
+            {% endblock %}
+
+            {% block login_message %}
+
             <p>
                 Please log in to track your smoke-free journey, monitor your progress, and stay motivated with personalized insights and support.
             </p>
-            <form action="/login" method="post">
+
+            {% endblock %}
+
+
+            <form action="{{ '/' + request.endpoint }}" method="post">
 
                 <div class="login-form">
                     <input type="text" name="username" placeholder="Username" minlength="5" maxlength="20" required autofocus>
                     <input type="password" name="password" placeholder="Password" minlength="5" maxlength="20" required>
+
+                    {% block confirm %}{% endblock %}
 
                     <div class="login-extra">
                         <div class="remember">
@@ -27,15 +41,19 @@
                             <label for="remember">Remember Me</label>
                         </div>
 
-                        <a href="/templates/resetpassword.html" class="forgot">Forgot password?</a>
+                        {% block extra_right %}
+                            <a href="/resetpassword">Forgot password?</a>
+                        {% endblock %}
+
                     </div>
 
-                    <button class="login-button" type="submit">Login</button>
+                    {% block sign_in %}
+                        <button class="login-button" type="submit">Login</button>
+                    {% endblock %}
 
-                    <!-- Register redirection form -->
-                    <form action="/register" method="get">
-                        <button class="register-button" type="submit">Register here</a><button>
-                    </form>
+                    {% block sign_up%}
+                        <a href="/register" class="register-button">Register here</a>
+                    {% endblock %}
                 </div>
 
             </form>

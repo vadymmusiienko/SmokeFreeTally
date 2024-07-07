@@ -1,10 +1,25 @@
-{% extends "layout.html" %}
+{% extends "login.html" %}
 
 {% block title %}
     Register
 {% endblock %}
 
-{% block styles %}
-    <link rel="stylesheet" href="/static/login.css">
+{% block login_h1 %}
+    <h1>Welcome to the team!</h1>
 {% endblock %}
 
+{% block login_message %}{% endblock %}
+
+{% block confirm %}
+    <input type="password" name="password-confirm" placeholder="Confirm Password" minlength="5" maxlength="20" required>
+{% endblock %}
+
+{% block extra_right %}
+    <a href="/">Log in?</a>
+{% endblock %}
+
+{% block sign_in %}{% endblock %}
+
+{% block sign_up%}
+    <button class="register-button" type="submit">Register<button>
+{% endblock %}

@@ -46,3 +46,20 @@ def login():
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
+    
+# Register page
+@app.route("/register", methods=["GET", "POST"])
+def register():
+
+    # Forget any user_id
+    session.clear()
+
+    # User reached route via POST (as by submitting a form via POST)
+    if request.method == "POST":
+        # TODO check user's login and password, redirect to "/" if matches
+        return "Error"
+
+    # User reached route via GET (as by clicking a link or via redirect)
+    else:
+        return render_template("register.html")
+    
