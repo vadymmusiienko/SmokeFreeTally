@@ -28,10 +28,12 @@
 
 
             <form action="{{ '/' + request.endpoint }}" method="post">
-
                 <div class="login-form">
                     <input type="text" name="username" placeholder="Username" minlength="5" maxlength="20" required autofocus>
-                    <input type="password" name="password" placeholder="Password" minlength="5" maxlength="20" required>
+
+                    {% block form_password %}
+                        <input type="password" name="password" placeholder="Password" minlength="5" maxlength="20" required>
+                    {% endblock %}
 
                     {% block confirm %}{% endblock %}
 
@@ -48,11 +50,11 @@
                     </div>
 
                     {% block sign_in %}
-                        <button class="login-button" type="submit">Login</button>
+                        <button class="white-button" type="submit">Login</button>
                     {% endblock %}
 
                     {% block sign_up%}
-                        <a href="/register" class="register-button">Register here</a>
+                        <a href="/register" class="trans-button">Register here</a>
                     {% endblock %}
                 </div>
 
