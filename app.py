@@ -177,8 +177,50 @@ def resetpassword():
 
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
-        # TODO check user's login and password, redirect to "/" if matches
-        return "Error"
+
+        username = request.form.get("username")
+        password = request.form.get("password")
+        confirmation = request.form.get("password-confirm")
+
+        # Ensure username was submitted
+        if not username:
+            # TODO error html
+            return "must provide username"
+
+        # Ensure password was submitted
+        if not password:
+            # TODO error html
+            return "must provide password"
+
+        # Ensure confirmation was submitted
+        if not confirmation:
+            # TODO error html
+            return "must confirm your password"
+
+        # Ensure password matches the confirmation
+        if password != confirmation:
+            # TODO error html
+            return "the password does not match"
+        
+        # Ensure the user has an account
+        sql_query = "SELECT id FROM users WHERE username = ?"
+        user_id = execute(sql_query, (username,))
+        if not user_id:
+            # TODO error html
+            return "incorrect username"
+
+        # Hash the password before storing
+        hashed_password = generate_password_hash(password)
+
+        # Change user's password
+        sql_query = "UPDATE users SET password = ? WHERE username = ?"
+        execute(sql_query, (hashed_password, username))
+        
+        # Remember which user has logged in
+        user_id = user_id[0][0]
+        session["user_id"] = user_id
+
+        return redirect("/")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
