@@ -24,6 +24,8 @@ main {
     overflow: hidden;
     transform-style: preserve-3d;
     display: flex;
+    /* Edit */
+    margin-top: 6rem;
 }
 
 .card:hover{
@@ -36,15 +38,61 @@ main {
     }
 }
 
-.card img{
-    width: 8rem;
+/* Person css */
+.imgs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgs img{
     max-width: 100%;
     min-width: 80px;
     display: block;
-    border: 1px solid var(--card-color);
-    padding: 5px;
+    width: 8rem;
+}
+
+#profile_img{
+    padding: 0;
+    /* border: 1px solid var(--card-color);
     border-radius: 50%;
-    box-shadow: 0 2px 5px var(--card-color), 0 2px 5px var(--shadow-color);
+    box-shadow: 0 2px 5px var(--card-color), 0 2px 5px var(--shadow-color); */
+}
+
+.image-container{
+    position: relative;
+}
+
+#lungs_img{
+    position: absolute;
+    width: 5rem;
+    top: 8%;
+    left: 22%;
+    padding: 5px;
+    min-width: 40px;
+    max-width: 65%;
+}
+
+#legs_img{
+    width: 6.3rem;
+    min-width: 60px;
+    max-width: 80%;
+}
+
+/* Achievements */
+.first-row,
+.second-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.first-row img,
+.second-row img{
+    width: 3rem;
+    min-width: 40px;
+    margin-right: 10px;
 }
 
 .card::after{
@@ -85,7 +133,7 @@ main {
 }
 
 .name h4{
-    font-size: 0.8;
+    font-size: 0.8rem;
 }
 
 .text{
@@ -95,8 +143,7 @@ main {
 
 .details{
     list-style: none;
-    margin-bottom: 1rem;
-    display: flex;
+    margin-bottom: 0.5rem;
     padding: 1rem 0;
     /* delete */
     position: relative;
@@ -104,6 +151,9 @@ main {
 
 .details li{
     min-width: 5rem;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
 }
 
 .details li h3{
@@ -113,7 +163,7 @@ main {
 .details li h4{
     font-size: 0.8rem;
     font-weight: 400;
-    margin-top: 5px;
+    margin-left: 5px;
 }
 
 /* Line after details */
@@ -124,9 +174,11 @@ main {
     height: 2px;
     background-color: rgba(255, 255, 255, 0.5);
     left: 0;
-    top: 100%;
     box-shadow: 0 2px 10px 0 rgba(255, 255, 255, 0.3), 0 2px 10px 0 var(--shadow-color);
+}
 
+.details::before{
+    top: 0;
 }
 
  .links button{
@@ -151,7 +203,7 @@ main {
     color: var(--card-color);
 }
 
-@media only screen and (max-width: 468px) {
+@media only screen and (max-width: 500px) {
     .card{
         display: block;
     }
