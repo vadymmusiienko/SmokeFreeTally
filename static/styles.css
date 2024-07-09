@@ -14,7 +14,10 @@
 }
 
 body{
-    background-color: lightgray;
+    background-image: url(background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     min-height: 100vh;
     font-size: 16px;
 }
@@ -34,10 +37,11 @@ body::-webkit-scrollbar-thumb{
 
 /* Navbar */
 
-nav{
-    background-color: var(--bg-primary);
+/* nav{
+    background-color: rgba(0, 0, 0, 0.2);
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
-}
+    backdrop-filter: blur(10px);
+} */
 
 nav ul{
     width: 100%;
@@ -48,7 +52,7 @@ nav ul{
 }
 
 nav li{
-    height: 50px;
+    height: 75px;
     display: flex;
     justify-content: center;
     align-items: center;

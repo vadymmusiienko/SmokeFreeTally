@@ -10,7 +10,8 @@
     <!-- Vertical -->
     <ul class="sidebar">
         <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
-        <li><a href="#"><img src="/static/images/logo.png" alt="logo.png"></a></li>
+        <li><a href="/"><img src="/static/images/logo.png" alt="logo.png"></a></li>
+        <li><a href="/" class="underline">Home</a></li>
         <li><a href="#" class="underline">Statistics</a></li>
         <li><a href="#" class="underline">About</a></li>
         <li><a href="#" class="underline">Log out</a></li>
@@ -18,11 +19,12 @@
     </ul>
 
     <!-- Horizontal -->
-    <ul>
-        <li class="hide-on-mobile2"><a href="#"><img src="/static/images/logo.png" alt=""></a></li>
+    <ul class="navbar">
+        <li class="hide-on-mobile2"><a href="/"><img class="navbar-logo" src="/static/images/logo.png" alt=""></a></li>
+        <li class="hide-on-mobile"><a href="/" class="underline">Home</a></li>
         <li class="hide-on-mobile"><a href="#" class="underline">Statistics</a></li>
         <li class="hide-on-mobile"><a href="#" class="underline">About</a></li>
-        <li class="hide-on-mobile"><a href="#" class="underline">Log out</a></li>
+        <li class="hide-on-mobile"><a href="/login" class="underline">Log out</a></li>
         <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
     </ul>
 </nav>
