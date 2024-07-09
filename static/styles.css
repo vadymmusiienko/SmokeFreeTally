@@ -88,6 +88,11 @@ nav li:first-child{
     display: none;
 }
 
+.navbar-logo{
+    height: 60px;
+    width: auto;
+}
+
 .sidebar{
     position: fixed;
     top: 0;

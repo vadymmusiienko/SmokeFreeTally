@@ -4,7 +4,7 @@ function showSidebar(){
     const sidebar = document.querySelector(".sidebar");
     sidebar.style.display = "flex";
 
-    const logo = document.querySelector(".navbar-logo")
+    const logo = document.querySelector(".logo-hide")
     logo.style.display = "none";
 
     const menu = document.querySelector(".menu-button");
@@ -15,7 +15,7 @@ function hideSidebar(){
     const sidebar = document.querySelector(".sidebar");
     sidebar.style.display = "none";
 
-    const logo = document.querySelector(".navbar-logo")
+    const logo = document.querySelector(".logo-hide")
     logo.style.display = "flex";
 
     const menu = document.querySelector(".menu-button");
