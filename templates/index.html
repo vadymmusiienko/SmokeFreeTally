@@ -1,5 +1,82 @@
-{% extends "layout_main.html" %}
+{% extends "navbar_layout.html" %}
 
 {% block title %}
     Home
+{% endblock %}
+
+{% block styles %}
+    <!-- Styles for navbar -->
+    <link rel="stylesheet" href="/static/navbar.css">
+    <link rel="stylesheet" href="/static/homepage.css">
+{% endblock %}
+
+{% block main %}
+
+<main>
+    <!-- <section class="welcome">
+        <h1>Welcome Back, [User's Name]!</h1>
+        Add a condition, if first time, than start... else continue...
+        <p>Start your journey to a smoke-free life.</p> 
+    </section> -->
+
+
+    <section class="card">
+
+        <div class="profile_img">
+            <img src="/static/images/man_icon.png" alt="Profile">
+        </div>
+
+        <div class="info">
+
+            <div class="name">
+                <h2>[User's Name]</h2>
+                <h4>[User's email]</h4>
+            </div>
+
+            <p class="text">
+                [number] many days without smoking!
+            </p>
+
+            <ul class="details">
+
+                <li>
+                    <h3>[int]</h3>
+                    <h4>Cigarettes not smoked</h4>
+                </li>
+
+                <li>
+                    <h3>[int] $</h3>
+                    <h4>Saved</h4>
+                </li>
+
+                <li>
+                    <h3>[int]</h3>
+                    <h4>something else</h4>
+                </li>
+
+            </ul>
+
+            <div class="links">
+                <button class="statistics">Statistics</button>
+                <button class="about">About</button>
+            </div>
+
+        </div>
+            
+    </section>
+
+
+    <!-- <section class="progress-tracker">
+        <h2>Your Progress</h2>
+        <p>Days Smoke-Free: [Number of Days]</p>
+        <p>Cigarettes Not Smoked: [Number of Cigarettes]</p>
+        <p>Money Saved: $[Amount Saved]</p>
+    </section> -->
+
+    <!-- <section class="daily-tips">
+        <h2>Daily Tip</h2>
+        <p>[Daily Tip or Motivational Quote]</p>
+    </section> -->
+
+
 {% endblock %}

@@ -2,6 +2,9 @@
 
 {% block title %}Home{% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" href="/static/navbar.css">    
+{% endblock %}
 
 <!-- Navigation bar -->
 {% block nav %}
@@ -9,8 +12,10 @@
 <nav>
     <!-- Vertical -->
     <ul class="sidebar">
-        <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
-        <li><a href="/"><img class="navbar-logo" src="/static/images/logo.png" alt="logo.png"></a></li>
+        <li onclick="hideSidebar()">
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a>
+            <a href="/"><img class="navbar-logo" src="/static/images/logo.png" alt="logo.png"></a>
+        </li>
         <li><a href="/" class="underline">Home</a></li>
         <li><a href="#" class="underline">Statistics</a></li>
         <li><a href="#" class="underline">About</a></li>
@@ -29,11 +34,5 @@
     </ul>
 </nav>
 
-
-{% endblock %}
-
-
-<!-- Main content -->
-{% block main %}
 
 {% endblock %}
