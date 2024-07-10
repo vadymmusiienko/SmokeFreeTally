@@ -18,6 +18,8 @@ body{
     min-height: 100vh;
     font-size: 16px;
     color: #fff;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Customize the scroll bar */
@@ -148,4 +150,19 @@ nav img{
     .hide-on-mobile2{
         display: none;
     }
+}
+
+/* Footer */
+
+footer{
+    width: 100%;
+    margin-top: auto;
+}
+
+.foot{
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
