@@ -4,7 +4,9 @@
     font-family: 'Roboto', sans-serif;
     --card-color: #6495ED;
     --shadow-color: #89CFF0;
-    --button-color: #000;
+    --button-color-off: transparent;
+    --button-color-on: rgba(0, 158, 96, 0.8);
+    --button-color-on-text: white;
 }
 
 *{
