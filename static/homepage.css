@@ -1,31 +1,27 @@
-/* Basic CSS styles */
-:root{
-    --card-color: #6495ED;
-    --shadow-color: #89CFF0;
-    --button-color: #000;
-}
-
-
+/* User's Card */
 main {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* User's Card */
+.wrap{
+    display: flex;
+    justify-content: center;
+    width: 80vw;
+    height: 75vh;
+    justify-items: center;
+}
+
 .card{
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
     padding: 2.5rem 2rem;
     border-radius: 15px;
-    box-shadow: 0 2px 10px 0 rgba(255, 255, 255, 0.3), 0 2px 10px 0 var(--shadow-color);
-    /* max-width: 500px; */
+    box-shadow: 0 2px 10px 0 rgba(255, 255, 255, 0.3), 0 2px 30px 0 var(--shadow-color);
     position: relative;
     overflow: hidden;
-    transform-style: preserve-3d;
-    display: flex;
-    /* Edit */
-    margin-top: 6rem;
+    margin: 1.5rem 0;
 }
 
 .card:hover {
@@ -56,14 +52,7 @@ main {
     max-width: 100%;
     min-width: 80px;
     display: block;
-    width: 8rem;
-}
-
-#profile_img{
-    padding: 0;
-    /* border: 1px solid var(--card-color);
-    border-radius: 50%;
-    box-shadow: 0 2px 5px var(--card-color), 0 2px 5px var(--shadow-color); */
+    width: 12rem;
 }
 
 .image-container{
@@ -72,8 +61,8 @@ main {
 
 #lungs_img{
     position: absolute;
-    width: 5rem;
-    top: 8%;
+    width: 7.5rem;
+    top: -1%;
     left: 22%;
     padding: 5px;
     min-width: 40px;
@@ -81,7 +70,7 @@ main {
 }
 
 #legs_img{
-    width: 6.3rem;
+    width: 9rem;
     min-width: 60px;
     max-width: 80%;
 }
@@ -116,9 +105,12 @@ main {
     z-index: -1;
 }
 
-.info{
+.info {
     margin-left: 3rem;
     margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .name{
@@ -194,32 +186,76 @@ main {
     margin: 10px;
 }
 
-.links .statistics,
-.links .about:hover{
+.links .button-1,
+.links .button-2:hover{
     background-color: var(--card-color);
     color: var(--button-color);
 }
 
-.links .about,
-.links .statistics:hover{
+.links .button-2,
+.links .button-1:hover{
     background-color: transparent;
     color: var(--card-color);
 }
 
-@media only screen and (max-width: 500px) {
-    .card{
-        display: block;
-        margin-top: 5px;
+@media only screen and (max-width: 700px){
+    .name h2 {
+        font-size: 1.8rem;
+    }
+
+    .name h4 {
+        font-size: 0.9rem;
+    }
+
+    .text {
+        font-size: 1rem;
+    }
+
+    .details li h4 {
+        font-size: 0.8rem;
+    }
+
+    .details li h3 {
+        font-size: 1rem;
+    }
+
+    .wrap{
+        width: auto;
     }
 
     .info{
+        margin-right: 0;
+    }
+
+    .imgs img{
+        width: 8rem;
+    }
+    
+    #lungs_img{
+        width: 5rem;
+    }
+    
+    #legs_img{
+        width: 6.3rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .wrap{
+        display: block;
+        height: auto;
+        width: 80vw;
+    }
+    
+    .card{
+        display: block;
+    }
+
+    .info{
+        display: block;
         margin-left: 0;
         margin-right: 0;
         margin-top: 1.5rem;
-    }
-
-    .links button{
-        min-width: 100px;
     }
 
     .imgs{
@@ -229,5 +265,31 @@ main {
 
 
 /* 
+before:
+
+.imgs img{
+    width: 8rem;
+}
+
+#lungs_img{
+    width: 5rem;
+}
+
+#legs_img{
+    width: 6.3rem;
+}
+
+new:
+#legs_img {
+    width: 9rem;
+}
+
+.imgs img {
+    width: 12rem;
+}
+
+#lungs_img {
+    width: 7.5rem;
+
 
 */
