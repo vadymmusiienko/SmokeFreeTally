@@ -44,7 +44,7 @@
 
                 <div class="settings">
 
-                    <form class="info-form" action="/info" method="post">
+                    <form class="info-form" action="/settings" method="post">
 
                         <p>My first name is 
                             <input onblur="handleBlur(this)" maxlength="20" oninput="limitInput(this)" class="input-text" type="text" name="first_name" {% if user_info is not none %} value="{{user_info[1]}}" {% endif %} autofocus required> 

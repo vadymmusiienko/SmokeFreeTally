@@ -2,6 +2,7 @@
 from flask import Flask, render_template, redirect, request, session, flash
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
+from datetime import datetime, timedelta
 import sqlite3
 
 # My libraries
@@ -50,6 +51,17 @@ def setup_database():
                 FOREIGN KEY (user_id) REFERENCES users(id)
             );
         """,
+
+        "log_history": """
+            CREATE TABLE IF NOT EXISTS log_history (
+                user_id INTEGER PRIMARY KEY,
+                first_log TEXT,
+                last_log TEXT,
+                total_logs INTEGER NOT NULL DEFAULT 0,
+                streak INTEGER NOT NULL DEFAULT 0,
+                FOREIGN KEY (user_id) REFERENCES users(id)
+                );
+        """,
         
         # Other tables go here
     }
@@ -80,12 +92,98 @@ setup_database()
 @login_required
 @settings_required
 def index():
+    # Get user's id
+    user_id = session["user_id"]
+
     # User reached route via POST (as by submitting a form via POST)
-    if request.method == "POST":
-        return
+    if request.method == "POST":    
+
+        # Get the log data from the db
+        query = "SELECT * FROM log_history WHERE user_id = ?"
+        log_history = execute(query, (user_id,))
+
+        # Get current date and time
+        current_datetime = datetime.now()
+
+        # Ensure it's been a day since the last log-in, redirect if NOT (if the first login ever - skip)
+        if log_history[0][1] is not None:
+            datetime_format = "%Y-%m-%d %H:%M:%S.%f"
+            if current_datetime < (datetime.strptime(log_history[0][2], datetime_format) + timedelta(hours=24)):
+                return redirect("/")
+
+        # First smoke free day
+        if log_history[0][1] is None:
+            
+            # Insert the first log history into the table
+            query = "UPDATE log_history SET first_log = ?, last_log = ?, total_logs = 1, streak = 1"
+            execute(query, (current_datetime, current_datetime))
+        
+        # Not the first log-in
+        else:
+            # Get the data
+            last_log, total_logs, streak = log_history[0][2:]
+
+            # Convert datatime string to an actual object
+            datetime_format = "%Y-%m-%d %H:%M:%S.%f"
+            last_log = datetime.strptime(last_log, datetime_format)
+
+            # Update the total logs
+            total_logs += 1
+
+            # If the last log date was yesterday, increment the streak
+            if last_log.date() == current_datetime.date() - timedelta(days=1):
+                streak += 1
+
+            # If the last log date was not yesterday or today, reset the streak
+            elif last_log.date() != current_datetime.date():
+                streak = 1
+
+            # Update the log history
+            query = "UPDATE log_history SET last_log = ?, total_logs = ?, streak = ? WHERE user_id = ?"
+            execute(query, (current_datetime, total_logs, streak, user_id))
+        
+        # Redirect back to the home back via GET
+        flash('Logged a smoke-free day successfully!', 'success')
+        return redirect("/")
+            
+
     # User reached route via GET (as by clicking a link or via redirect)
     else:
-        return render_template("index.html")
+        # Get personal user's information
+        query = "SELECT * FROM user_info WHERE user_id = ?"
+        first_name, last_name, email, cigarettes_per_day, pack_cost = execute(query, (user_id,))[0][1:]
+
+        # Get the log history
+        query = "SELECT last_log, total_logs, streak FROM log_history WHERE user_id = ?"
+        last_log, total_logs, streak = execute(query, (user_id,))[0]
+
+        # Do the math to calculate "cigarettes not smoked" and "Money Saved"
+        cigarettes_not_smoked = cigarettes_per_day * total_logs
+        money_saved = pack_cost * total_logs
+
+        # Disable the button depending on whether it's time to login
+        current_datetime = datetime.now()
+        if last_log is not None:
+            datetime_format = "%Y-%m-%d %H:%M:%S.%f"
+            disabled = current_datetime < (datetime.strptime(last_log, datetime_format) + timedelta(hours=24))
+        else:
+            disabled = False
+
+
+        # Create a dictionary with the informatoin
+        information = {
+            "cigarettes_not_smoked": cigarettes_not_smoked,
+            "money_saved": money_saved,
+            "total_logs": total_logs,
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": email,
+            "streak": streak,
+            "disabled": disabled,
+            "last_log": datetime.strptime(last_log, "%Y-%m-%d %H:%M:%S.%f")
+        }
+
+        return render_template("index.html", information=information)
 
 # Login page
 @app.route("/login", methods=["GET", "POST"])
@@ -169,17 +267,22 @@ def register():
 
         # Add user to the data base
         try:
-            sql_query = "INSERT INTO users (username, password) VALUES (?, ?)"
-            execute(sql_query, (username, hashed_password))
+            query = "INSERT INTO users (username, password) VALUES (?, ?)"
+            execute(query, (username, hashed_password))
         except sqlite3.IntegrityError:
             return "the user already exists"
         
 
         # Remember which user has logged in
-        sql_query = "SELECT id FROM users WHERE username = ?"
-        user_id = execute(sql_query, (username,))
+        query = "SELECT id FROM users WHERE username = ?"
+        user_id = execute(query, (username,))
         user_id = user_id[0][0]
         session["user_id"] = user_id
+
+
+        # Create a log history for a user (with 2 NULL values)
+        query = "INSERT INTO log_history (user_id, first_log, last_log, total_logs, streak) VALUES (?, NULL, NULL, 0, 0)"
+        execute(query, (user_id,))
 
         # Redirect user to home page
         return redirect("/settings")
@@ -192,6 +295,7 @@ def register():
 @app.route("/settings", methods=["GET", "POST"])
 @login_required
 def settings():
+    # Get user's id
     user_id = session["user_id"]
 
     if request.method == "POST":

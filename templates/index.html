@@ -34,8 +34,8 @@
             <div class="info">
     
                 <div class="name">
-                    <h2>Vadym Musiienko</h2>
-                    <h4>musiienkovadym@gmail.com</h4>
+                    <h2>{{ information.first_name }}</h2>
+                    <h4>{{ information.email }}</h4>
                 </div>
     
                 <!-- Block of details -->
@@ -46,17 +46,17 @@
                 <ul class="details">
                     
                     <li>
-                        <h3>0</h3>
+                        <h3>{{ information.total_logs }}</h3>
                         <h4>Days without smoking</h4>
                     </li>
     
                     <li>
-                        <h3>0</h3>
+                        <h3>{{ information.cigarettes_not_smoked }}</h3>
                         <h4>Cigarettes not smoked</h4>
                     </li>
     
                     <li>
-                        <h3>0</h3>
+                        <h3>{{ information.money_saved }}</h3>
                         <h4>Dollars Saved</h4>
                     </li>
     
@@ -85,9 +85,9 @@
     
                 </ul>
     
-                <div class="log-button">
-                    <button id="log-day">Log Smoke-Free Day</button>
-                </div>
+                <form action="/" method="post" class="log-button {% if information.disabled %}disabled{% endif %}">
+                    <button id="disabled" class="log-day" type="submit" {% if information.disabled %}disabled{% endif %}>Log Smoke-Free Day</button>
+                </form>
     
             </div>
 
