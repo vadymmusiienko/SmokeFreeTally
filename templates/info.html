@@ -1,0 +1,91 @@
+{% extends "navbar_layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block styles %}
+    <!-- Styles for navbar -->
+    <link rel="stylesheet" href="/static/navbar.css">
+    <link rel="stylesheet" href="/static/info.css">
+{% endblock %}
+
+{% block main %}
+
+<main>
+    
+    <section class="card">
+
+        <div class="wrap">
+            
+            <!-- Person -->
+            <div class="imgs">
+                <img id="profile_img" src="/static/images/head.png" alt="Profile">
+    
+                <div class="image-container">
+                    <img id="chest_img" src="/static/images/chest.png" alt="Lungs">
+                    <img id="lungs_img" src="/static/images/lungs_1.png" alt="Chest">
+                </div>
+    
+                <img id="legs_img" src="/static/images/legs.png" alt="Legs">
+            </div>
+
+            <!-- Information -->
+
+            <div class="info">
+
+                <div class="title">
+                    <h2>Settings</h2>
+                </div>
+
+                <p class="text">
+                    General Information
+                </p>
+
+                <div class="settings">
+
+                    <form class="info-form" action="/info" method="post">
+
+                        <p>My first name is 
+                            <input onblur="handleBlur(this)" maxlength="20" oninput="limitInput(this)" class="input-text" type="text" name="first_name" {% if user_info is not none %} value="{{user_info[1]}}" {% endif %} autofocus required> 
+                        </p>
+
+                        <p>My Last name is 
+                            <input onblur="handleBlur(this)" maxlength="20" oninput="limitInput(this)" class="input-text" type="text" name="last_name" {% if user_info is not none %} value="{{user_info[2]}}" {% endif %} required> 
+                        </p>
+
+                        <p>My Email is 
+                            <input onblur="handleBlur(this)" maxlength="30" oninput="limitInput(this)" class="input-text" type="email" name="email" {% if user_info is not none %} value="{{user_info[3]}}" {% endif %} required> 
+                        </p>
+
+                        <p>I smoke (used to) 
+                            <input onblur="handleBlur(this)" maxlength="2" oninput="limitInput(this)" class="input-num" type="number" name="cigarettes_per_day" {% if user_info is not none %} value="{{user_info[4]}}" {% endif %} required> 
+                        cigarettes per day.</p>
+
+                        <p>
+                            A pack of cigarettes costs <input onblur="handleBlur(this)" maxlength="2" oninput="limitInput(this)" class="input-num" type="number" name="pack_cost" {% if user_info is not none %} value="{{user_info[5]}}" {% endif %} required>
+                        usd.</p>
+                        
+                        <div class="confirm-button">
+                            <button id="confirm" type="submit">Confirm</button>
+                        </div>
+
+                    </form>
+                    
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+    </section>
+
+
+    
+</main>
+
+{% endblock %}

@@ -1,11 +1,11 @@
 # External libraries/frameworks
-from flask import Flask, render_template, redirect, request, session
+from flask import Flask, render_template, redirect, request, session, flash
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
 
 # My libraries
-from helpers import login_required, execute
+from helpers import login_required, info_required, execute
 
 """Configure flask"""
 app = Flask(__name__)
@@ -30,6 +30,7 @@ def setup_database():
     """Set up the SQLite database and create tables if they don't exist."""
     # Dictionary of tables for the database
     TABLES = {
+
         "users": """
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -37,6 +38,19 @@ def setup_database():
                 password TEXT NOT NULL
             );
         """,
+
+        "user_info": """
+            CREATE TABLE IF NOT EXISTS user_info (
+                user_id INTEGER PRIMARY KEY,
+                first_name TEXT NOT NULL,
+                last_name TEXT NOT NULL,
+                email TEXT NOT NULL,
+                cigarettes_per_day INTEGER NOT NULL,
+                pack_cost INTEGER NOT NULL,
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            );
+        """,
+        
         # Other tables go here
     }
 
@@ -64,6 +78,7 @@ setup_database()
 # Home page
 @app.route("/")
 @login_required
+@info_required
 def index():
     return render_template("index.html")
 
@@ -162,12 +177,59 @@ def register():
         session["user_id"] = user_id
 
         # Redirect user to home page
-        return redirect("/")
+        return redirect("/info")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("register.html")
-    
+
+# Enter your info page
+@app.route("/info", methods=["GET", "POST"])
+@login_required
+def info():
+    user_id = session["user_id"]
+
+    if request.method == "POST":
+        
+        first_name = request.form.get("first_name").strip().lower().capitalize()
+        last_name = request.form.get("last_name").strip().lower().capitalize()
+        email = request.form.get("email")
+        cigarettes_per_day = request.form.get("cigarettes_per_day")
+        pack_cost = request.form.get("pack_cost")
+
+        # Ensure all fields were provided
+        if not first_name or not last_name or not email or not cigarettes_per_day or not pack_cost:
+            return "All fields are required"
+
+        # Ensure pack_cost and cigarettes_per_day are numbers
+        try:
+            cigarettes_per_day = int(cigarettes_per_day)
+            pack_cost = int(pack_cost)
+        except ValueError:
+            return "Cigarettes and packs must be numbers"
+
+        query = """
+            INSERT INTO user_info (user_id, first_name, last_name, email, cigarettes_per_day, pack_cost) VALUES (?, ?, ?, ?, ?, ?) 
+            ON CONFLICT(user_id) DO UPDATE SET
+            first_name = EXCLUDED.first_name,
+            last_name = EXCLUDED.last_name,
+            email = EXCLUDED.email,
+            cigarettes_per_day = EXCLUDED.cigarettes_per_day,
+            pack_cost = EXCLUDED.pack_cost
+        """
+        
+        execute(query, (user_id, first_name, last_name, email, cigarettes_per_day, pack_cost))
+
+        flash("You have succesfully updated your information!")
+        return redirect("/")
+        
+
+    else:
+        # Check if it's users first time filling out the information page
+        query = "SELECT * FROM user_info WHERE user_id = ?"
+        user_info = execute(query, (user_id,))
+        return render_template("info.html", user_info=user_info[0] if user_info else None)
+
 # Reset password page
 @app.route("/resetpassword", methods=["GET", "POST"])
 def resetpassword():
@@ -225,6 +287,9 @@ def resetpassword():
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("resetpassword.html")
+
+
+
 
 
 if __name__ == '__main__':

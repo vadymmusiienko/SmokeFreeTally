@@ -3,36 +3,30 @@ from functools import wraps
 import sqlite3
 
 
-"""Connect a database"""
-def get_db_connection():
-    return sqlite3.connect("user_data.db")
-
-
-"""Execute a sqlite3 query"""
-def execute(query, params=None):
-    conn = get_db_connection()
+"""Execute a SQL query with the given parameters and return the result."""
+def execute(sql_query, params=()):
+    conn = sqlite3.connect('user_data.db')
     cur = conn.cursor()
+    cur.execute(sql_query, params)
+    rows = cur.fetchall()
+    conn.commit()
+    conn.close()
+    return rows
 
-    try:
-        # Execute the query
-        cur.execute(query, params)
 
-        if query.strip().upper().startswith('SELECT'):
-            # For SELECT queries, return fetched results
-            return cur.fetchall()
-        else:
-            # For other queries (INSERT, UPDATE, DELETE), commit the transaction
-            conn.commit()
-    except sqlite3.Error as e:
-        # Handle exceptions, print an error message or log it
-        print(f"Error executing SQL query: {e}")
-        # Optionally, rollback changes if needed
-        conn.rollback()
-    finally:
-        # Always close cursor and connection
-        cur.close()
-        conn.close()
+"""Ensures the user provided the required information"""
+def info_required(f):
 
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        user_id = session.get("user_id")
+        query = "SELECT * FROM user_info WHERE user_id = ?"
+        user_info = execute(query, (user_id,))
+        if not user_info:
+            return redirect("/info")
+        return f(*args, **kwargs)
+    
+    return decorated_function
 
 """Decoration function"""
 # Decorator function that ensures the user is logged in

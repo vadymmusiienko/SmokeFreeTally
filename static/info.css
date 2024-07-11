@@ -1,0 +1,194 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card styles */
+.card{
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px 0 rgba(255, 255, 255, 0.3), 0 2px 30px 0 var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+    margin: 1.5rem 0;
+}
+
+.wrap{
+    display: flex;
+    justify-content: center;
+    width: 80vw;
+    height: 75vh;
+    justify-items: center;
+}
+
+/* Quarter of a circle styles */
+.card::after{
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--shadow-color);
+    top: -8rem;
+    right: -8rem;
+    border-radius: 50%;
+}
+
+.card::after{
+    content: "";
+    position: absolute;
+    z-index: -1;
+}
+
+/* Person styles */
+.imgs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.imgs img{
+    max-width: 100%;
+    min-width: 80px;
+    display: block;
+    width: 12rem;
+}
+
+.image-container{
+    position: relative;
+}
+
+#lungs_img{
+    position: absolute;
+    width: 7.5rem;
+    top: -1%;
+    left: 22%;
+    padding: 5px;
+    min-width: 40px;
+    max-width: 65%;
+}
+
+#legs_img{
+    width: 9rem;
+    min-width: 60px;
+    max-width: 80%;
+}
+
+/* Parameters sectoin styles */
+.info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1rem;
+}
+
+.title{
+    margin-bottom: 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.title h2{
+    color: gray;
+    font-size: 2rem;
+    margin-right: 5rem;
+}
+
+.text{
+    width: 100%;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.settings{
+    width: 100%;
+    height: 100%;
+
+    margin-bottom: 0.5rem;
+    padding: 1rem 0;
+    position: relative;
+}
+
+.settings::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    left: 0;
+    top: 0;
+    box-shadow: 0 2px 10px 0 rgba(255, 255, 255, 0.3), 0 2px 10px 0 var(--shadow-color);
+}
+
+/* Form styles */
+.info-form{
+    margin: 5px 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-form p{
+    font-size: 1.2rem;
+    padding: 5px 0;
+    margin-bottom: 5px;
+}
+
+.info-form p input{
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: gray;
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    max-width: 200px;
+    outline: none;
+}
+
+.input-text{
+    width: 250px;
+    min-width: 70px;
+}
+
+.input-num{
+    width: 35px;
+}
+
+/* Hide the default number input arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Confirm button styles */
+.confirm-button{
+    margin-top: auto;
+    padding-bottom: 20%;
+}
+
+.confirm-button button{
+    min-width: 150px;
+    height: 100%;
+    padding: 0.6rem 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s linear;
+}
+
+#confirm{
+    background-color: var(--settings-button-color);
+    color: var(--card-color-on);
+    border: 1px solid var(--settings-button-color); 
+    border-radius: 10px;
+}
+
+#confirm:hover{
+    background-color: transparent;
+}

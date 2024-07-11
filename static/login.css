@@ -26,12 +26,13 @@ body{
 
 .container-login{
     background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
     padding: 40px;
     border-radius: 10px;
     color: #fff;
     text-align: center;
     min-width: 350px;
-    height: 70vh;
+    height: auto;
     width: 50vw;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

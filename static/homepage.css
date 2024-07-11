@@ -5,14 +5,6 @@ main {
     align-items: center;
 }
 
-.wrap{
-    display: flex;
-    justify-content: center;
-    width: 80vw;
-    height: 75vh;
-    justify-items: center;
-}
-
 .card{
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
@@ -22,6 +14,14 @@ main {
     position: relative;
     overflow: hidden;
     margin: 1.5rem 0;
+}
+
+.wrap{
+    display: flex;
+    justify-content: center;
+    width: 80vw;
+    height: 75vh;
+    justify-items: center;
 }
 
 .card:hover {
@@ -75,21 +75,9 @@ main {
     max-width: 80%;
 }
 
-/* Achievements */
-.first-row,
-.second-row{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.first-row img,
-.second-row img{
-    width: 3rem;
-    min-width: 40px;
-    margin-right: 10px;
-}
 
+/* Decoration quarter of a circle */
 .card::after{
     height: 15rem;
     width: 15rem;
@@ -105,6 +93,7 @@ main {
     z-index: -1;
 }
 
+/* Text block */
 .info {
     margin-left: 3rem;
     margin-right: 1rem;
@@ -162,13 +151,26 @@ main {
     height: 2px;
     background-color: rgba(255, 255, 255, 0.5);
     left: 0;
+    top: 0;
     box-shadow: 0 2px 10px 0 rgba(255, 255, 255, 0.3), 0 2px 10px 0 var(--shadow-color);
 }
 
-.details::before{
-    top: 0;
+/* Achievements */
+.first-row,
+.second-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.first-row img,
+.second-row img{
+    width: 3rem;
+    min-width: 40px;
+    margin-right: 10px;
+}
+
+/* Login a day button */
 .log-button{
     display: flex;
     justify-content: center;
@@ -179,7 +181,7 @@ main {
     min-width: 300px;
     height: 100%;
     padding: 0.6rem 0.5rem;
-    font-weight: 600;
+    font-weight: 600;   
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     margin: 10px;
@@ -197,6 +199,7 @@ main {
     box-shadow: 0 2px 10px 0 var(--card-color), 0 2px 10px 0 var(--button-color-on);
 }
 
+/* Mobile devices */
 @media only screen and (max-width: 700px){
     .name h2 {
         font-size: 1.8rem;
