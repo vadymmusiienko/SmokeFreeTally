@@ -21,7 +21,7 @@ main {
     justify-content: center;
     width: 80vw;
     height: 75vh;
-    justify-items: center;
+    align-items: center;
 }
 
 .card:hover {

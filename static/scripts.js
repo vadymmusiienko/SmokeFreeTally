@@ -33,21 +33,24 @@ function limitInput(input){
 
 
 // Handle the underline for the input on setting page (when no text - underline, otherwise - nothing)
-function handleBlur(input){
-    if (input.value){
-        input.style.borderBottomColor = "transparent";
-    }
-    else{
-        input.style.borderBottomColor = "white";
+function handleBlur(element) {
+    if (element.value) {
+        element.parentElement.classList.remove("line");
+    } 
+    else {
+        element.parentElement.classList.add("line");
     }
 }
 
-document.addEventListener("DOMContentLoaded", function(){
-    const inputs = document.querySelectorAll(".info-form input")
+document.addEventListener("DOMContentLoaded", function() {
+    const elements = document.querySelectorAll(".mini-wrapper input");
 
-    for (let i = 0, len = inputs.length; i < len; i++){
-        if (inputs[i].value){
-            inputs[i].style.borderBottomColor = "transparent";
-        }
-    }
-})
+    elements.forEach(element => {
+        if (element.value) {
+            element.parentElement.classList.remove("line");
+        } 
+        else {
+            element.parentElement.classList.add("line");
+        };
+    });
+});

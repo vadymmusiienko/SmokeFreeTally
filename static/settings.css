@@ -1,3 +1,8 @@
+/* 
+colors:
+settings heading: #lightgray
+*/
+
 main {
     display: flex;
     justify-content: center;
@@ -18,10 +23,10 @@ main {
 
 .wrap{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 80vw;
     height: 75vh;
-    justify-items: center;
+    align-items: center;
 }
 
 /* Quarter of a circle styles */
@@ -76,9 +81,84 @@ main {
     max-width: 80%;
 }
 
-/* Parameters sectoin styles */
+/* Settings */
 .info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.title{
+    margin-bottom: 4rem;
+    color: lightgray; /* TODO: change the color the the settings title */
+    font-size: 1.5rem;
+}
+
+.heading{
+    font-size: 1.3rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.heading::after{
+    content: "";
+    position: absolute;
     width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    left: 0;
+    top: 100%;
+    box-shadow: 0 2px 10px 0 rgba(255, 255, 255, 0.3), 0 2px 10px 0 var(--shadow-color);
+}
+
+.section > div{
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.1rem;
+    display: flex;
+}
+
+.section input{
+    color: gray; /* TODO take care of the color */
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.input-num{
+    width: 25px;
+    flex: 0 !important;
+    text-align: center;
+}
+
+.mini-wrapper{
+    flex: 1;
+    margin: 0 10px;
+    min-width: 25px;
+    width: 150px;
+}
+
+.line{
+    position: relative;
+}
+
+.line::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5); /* TODO: Change the color  */ 
+    left: 0;
+    top: 115%;
+    box-shadow: 0 2px 10px 0 rgba(255, 255, 255, 0.3), 0 2px 10px 0 var(--shadow-color);
+}
+
+/* Parameters section styles */
+/* .info{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -96,14 +176,12 @@ main {
 .title h2{
     color: gray;
     font-size: 2rem;
-    margin-right: 5rem;
 }
 
 .text{
     width: 100%;
     font-size: 1.5rem;
     padding-bottom: 1rem;
-
     position: relative;
 }
 
@@ -127,14 +205,12 @@ main {
 }
 
 /* Form styles */
-.info-form{
+/* .info-form{
     margin: 5px 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
 }
+  */
 
-.info-form p{
+/* .info-form p{
     font-size: 1.2rem;
     padding: 5px 0;
     margin-bottom: 5px;
@@ -148,18 +224,21 @@ main {
     color: gray;
     font-size: 1.2rem;
     font-family: 'Roboto', sans-serif;
-    max-width: 200px;
+    
     outline: none;
 }
 
+#email-input{
+    max-width: 100%
+}
+
 .input-text{
-    width: 250px;
     min-width: 70px;
 }
 
 .input-num{
     width: 35px;
-}
+} */
 
 /* Hide the default number input arrows */
 input[type="number"]::-webkit-outer-spin-button,
@@ -169,7 +248,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 /* Confirm button styles */
-.confirm-button{
+/* .confirm-button{
     margin-top: auto;
     padding-bottom: 20%;
 }
@@ -192,4 +271,4 @@ input[type="number"]::-webkit-inner-spin-button {
 
 #confirm:hover{
     background-color: transparent;
-}
+} */
