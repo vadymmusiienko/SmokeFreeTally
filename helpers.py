@@ -15,7 +15,7 @@ def execute(sql_query, params=()):
 
 
 """Ensures the user provided the required information"""
-def info_required(f):
+def settings_required(f):
 
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -23,7 +23,7 @@ def info_required(f):
         query = "SELECT * FROM user_info WHERE user_id = ?"
         user_info = execute(query, (user_id,))
         if not user_info:
-            return redirect("/info")
+            return redirect("/settings")
         return f(*args, **kwargs)
     
     return decorated_function

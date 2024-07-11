@@ -5,7 +5,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
 
 # My libraries
-from helpers import login_required, info_required, execute
+from helpers import login_required, settings_required, execute
 
 """Configure flask"""
 app = Flask(__name__)
@@ -76,11 +76,16 @@ setup_database()
 
 """Configure routs"""
 # Home page
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 @login_required
-@info_required
+@settings_required
 def index():
-    return render_template("index.html")
+    # User reached route via POST (as by submitting a form via POST)
+    if request.method == "POST":
+        return
+    # User reached route via GET (as by clicking a link or via redirect)
+    else:
+        return render_template("index.html")
 
 # Login page
 @app.route("/login", methods=["GET", "POST"])
@@ -177,16 +182,16 @@ def register():
         session["user_id"] = user_id
 
         # Redirect user to home page
-        return redirect("/info")
+        return redirect("/settings")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("register.html")
 
 # Enter your info page
-@app.route("/info", methods=["GET", "POST"])
+@app.route("/settings", methods=["GET", "POST"])
 @login_required
-def info():
+def settings():
     user_id = session["user_id"]
 
     if request.method == "POST":
@@ -228,7 +233,12 @@ def info():
         # Check if it's users first time filling out the information page
         query = "SELECT * FROM user_info WHERE user_id = ?"
         user_info = execute(query, (user_id,))
-        return render_template("info.html", user_info=user_info[0] if user_info else None)
+        return render_template("settings.html", user_info=user_info[0] if user_info else None)
+
+# About page
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 # Reset password page
 @app.route("/resetpassword", methods=["GET", "POST"])
