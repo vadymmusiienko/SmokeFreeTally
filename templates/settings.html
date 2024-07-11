@@ -47,25 +47,33 @@
                     <form class="info-form" action="/settings" method="post">
 
                         <p>My first name is 
-                            <input onblur="handleBlur(this)" maxlength="20" oninput="limitInput(this)" class="input-text" type="text" name="first_name" {% if user_info is not none %} value="{{user_info[1]}}" {% endif %} autofocus required> 
+                            <input onblur="handleBlur(this)" maxlength="20" oninput="limitInput(this)" class="input-text" type="text" name="first_name" {% if user_information is not none %} value="{{ user_information.first_name }}" {% endif %} autofocus required> 
                         </p>
 
                         <p>My Last name is 
-                            <input onblur="handleBlur(this)" maxlength="20" oninput="limitInput(this)" class="input-text" type="text" name="last_name" {% if user_info is not none %} value="{{user_info[2]}}" {% endif %} required> 
+                            <input onblur="handleBlur(this)" maxlength="20" oninput="limitInput(this)" class="input-text" type="text" name="last_name" {% if user_information is not none %} value="{{ user_information.last_name }}" {% endif %} required> 
                         </p>
 
                         <p>My Email is 
-                            <input onblur="handleBlur(this)" maxlength="30" oninput="limitInput(this)" class="input-text" type="email" name="email" {% if user_info is not none %} value="{{user_info[3]}}" {% endif %} required> 
+                            <input onblur="handleBlur(this)" maxlength="35" oninput="limitInput(this)" class="input-text" type="email" name="email" {% if user_information is not none %} value="{{ user_information.email }}" {% endif %} required> 
                         </p>
 
                         <p>I smoke (used to) 
-                            <input onblur="handleBlur(this)" maxlength="2" oninput="limitInput(this)" class="input-num" type="number" name="cigarettes_per_day" {% if user_info is not none %} value="{{user_info[4]}}" {% endif %} required> 
+                            <input onblur="handleBlur(this)" maxlength="2" oninput="limitInput(this)" class="input-num" type="number" name="cigarettes_per_day" {% if user_information is not none %} value="{{ user_information.cigarettes_per_day }}" {% endif %} required> 
                         cigarettes per day.</p>
 
                         <p>
-                            A pack of cigarettes costs <input onblur="handleBlur(this)" maxlength="2" oninput="limitInput(this)" class="input-num" type="number" name="pack_cost" {% if user_info is not none %} value="{{user_info[5]}}" {% endif %} required>
+                            A pack of cigarettes costs <input onblur="handleBlur(this)" maxlength="2" oninput="limitInput(this)" class="input-num" type="number" name="pack_cost" {% if user_information is not none %} value="{{ user_information.pack_cost }}" {% endif %} required>
                         usd.</p>
                         
+                        <!-- Select a gender -->
+                        <p>
+                            I am a <select name="gender" id="">
+                                <option value="male" {% if user_information.gender == "male" %} selected {% endif %}>Male</option>
+                                <option value="female" {% if user_information.gender == "female" %} selected {% endif %}>Female</option>
+                            </select>
+                        </p>
+
                         <div class="confirm-button">
                             <button id="confirm" type="submit">Confirm</button>
                         </div>

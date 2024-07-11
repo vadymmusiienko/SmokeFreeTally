@@ -48,6 +48,7 @@ def setup_database():
                 email TEXT NOT NULL,
                 cigarettes_per_day INTEGER NOT NULL,
                 pack_cost INTEGER NOT NULL,
+                gender TEXT NOT NULL,
                 FOREIGN KEY (user_id) REFERENCES users(id)
             );
         """,
@@ -151,15 +152,15 @@ def index():
     else:
         # Get personal user's information
         query = "SELECT * FROM user_info WHERE user_id = ?"
-        first_name, last_name, email, cigarettes_per_day, pack_cost = execute(query, (user_id,))[0][1:]
-
+        first_name, last_name, email, cigarettes_per_day, pack_cost, gender = execute(query, (user_id,))[0][1:]
+        # todo gender that I don't use yet
         # Get the log history
         query = "SELECT last_log, total_logs, streak FROM log_history WHERE user_id = ?"
         last_log, total_logs, streak = execute(query, (user_id,))[0]
 
         # Do the math to calculate "cigarettes not smoked" and "Money Saved"
         cigarettes_not_smoked = cigarettes_per_day * total_logs
-        money_saved = pack_cost * (cigarettes_not_smoked / 20)
+        money_saved = round((pack_cost * (cigarettes_not_smoked / 20)), 2)
 
         # Disable the button depending on whether it's time to login
         current_datetime = datetime.now()
@@ -168,7 +169,6 @@ def index():
             disabled = current_datetime < (datetime.strptime(last_log, datetime_format) + timedelta(hours=24))
         else:
             disabled = False
-
 
         # Create a dictionary with the informatoin
         information = {
@@ -180,8 +180,10 @@ def index():
             "email": email,
             "streak": streak,
             "disabled": disabled,
-            "last_log": datetime.strptime(last_log, "%Y-%m-%d %H:%M:%S.%f")
+            "last_log": last_log,
+            "gender": gender,
         }
+        # TODO use gender
 
         return render_template("index.html", information=information)
 
@@ -305,9 +307,10 @@ def settings():
         email = request.form.get("email")
         cigarettes_per_day = request.form.get("cigarettes_per_day")
         pack_cost = request.form.get("pack_cost")
+        gender = request.form.get("gender").strip().lower()
 
         # Ensure all fields were provided
-        if not first_name or not last_name or not email or not cigarettes_per_day or not pack_cost:
+        if not first_name or not last_name or not email or not cigarettes_per_day or not pack_cost or not gender:
             return "All fields are required"
 
         # Ensure pack_cost and cigarettes_per_day are numbers
@@ -318,16 +321,17 @@ def settings():
             return "Cigarettes and packs must be numbers"
 
         query = """
-            INSERT INTO user_info (user_id, first_name, last_name, email, cigarettes_per_day, pack_cost) VALUES (?, ?, ?, ?, ?, ?) 
+            INSERT INTO user_info (user_id, first_name, last_name, email, cigarettes_per_day, pack_cost, gender) VALUES (?, ?, ?, ?, ?, ?, ?) 
             ON CONFLICT(user_id) DO UPDATE SET
             first_name = EXCLUDED.first_name,
             last_name = EXCLUDED.last_name,
             email = EXCLUDED.email,
             cigarettes_per_day = EXCLUDED.cigarettes_per_day,
-            pack_cost = EXCLUDED.pack_cost
+            pack_cost = EXCLUDED.pack_cost,
+            gender = EXCLUDED.gender
         """
         
-        execute(query, (user_id, first_name, last_name, email, cigarettes_per_day, pack_cost))
+        execute(query, (user_id, first_name, last_name, email, cigarettes_per_day, pack_cost, gender))
 
         flash("You have succesfully updated your information!")
         return redirect("/")
@@ -337,7 +341,22 @@ def settings():
         # Check if it's users first time filling out the information page
         query = "SELECT * FROM user_info WHERE user_id = ?"
         user_info = execute(query, (user_id,))
-        return render_template("settings.html", user_info=user_info[0] if user_info else None)
+
+        # Make a dictionary with all the information
+        if user_info:
+            user_info = user_info[0]
+            user_information = {
+                "first_name": user_info[1],
+                "last_name": user_info[2],
+                "email": user_info[3],
+                "cigarettes_per_day": user_info[4],
+                "pack_cost": user_info[5],
+                "gender": user_info[6],
+            }
+        else:
+            user_information = None
+
+        return render_template("settings.html", user_information=user_information if user_information is not None else None)
 
 # About page
 @app.route("/about")
