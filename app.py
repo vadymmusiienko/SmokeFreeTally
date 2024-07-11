@@ -159,7 +159,7 @@ def index():
 
         # Do the math to calculate "cigarettes not smoked" and "Money Saved"
         cigarettes_not_smoked = cigarettes_per_day * total_logs
-        money_saved = pack_cost * total_logs
+        money_saved = pack_cost * (cigarettes_not_smoked / 20)
 
         # Disable the button depending on whether it's time to login
         current_datetime = datetime.now()
