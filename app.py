@@ -333,7 +333,6 @@ def settings():
         
         execute(query, (user_id, first_name, last_name, email, cigarettes_per_day, pack_cost, gender))
 
-        flash("You have succesfully updated your information!")
         return redirect("/")
         
 
