@@ -183,7 +183,6 @@ def index():
             "last_log": last_log,
             "gender": gender,
         }
-        # TODO use gender
 
         return render_template("index.html", information=information)
 

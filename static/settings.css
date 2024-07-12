@@ -216,9 +216,14 @@ input[type="number"]::-webkit-inner-spin-button {
         left: initial;
         right: 0;
     }
+
     .wrap{
         justify-content: flex-end;
         min-width: 270px;
+    }
+    
+    #profile_img{
+        width: 6rem !important;
     }
 
 }

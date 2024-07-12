@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="/static/settings.css">
 {% endblock %}
 
+{% block scripts %}
+    <script src="/static/settings.js" defer></script>
+    <script src="/static/navbar.js" defer></script>
+{% endblock %}
+
 {% block main %}
 
 <main>
@@ -20,9 +25,8 @@
             
             <!-- Person -->
             <div class="imgs">
-                
-                <img id="profile_img" src="/static/images/head.png" alt="Profile">
-    
+
+                <img id="profile_img" src="/static/images/head.png" alt="Head">
                 <div class="image-container">
                     <img id="chest_img" src="/static/images/chest.png" alt="Lungs">
                     <img id="lungs_img" src="/static/images/lungs_1.png" alt="Chest">
@@ -84,9 +88,9 @@
                     <!-- Select a gender (dropdown) -->
                     <div>
                         I am a 
-                        <select name="gender">
-                            <option value="male" {% if user_information.gender == "male" %} selected {% endif %}>Male</option>
-                            <option value="female" {% if user_information.gender == "female" %} selected {% endif %}>Female</option>
+                        <select name="gender" id="gender">
+                            <option value="male" {% if user_information.gender == "male" %} selected {% endif %}>male</option>
+                            <option value="female" {% if user_information.gender == "female" %} selected {% endif %}>female</option>
                         </select>
                     </div>
 

@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="/static/navbar.css">    
 {% endblock %}
 
+{% block scripts %}
+    <script src="/static/navbar.js" defer></script>
+{% endblock %}
+
 <!-- Navigation bar -->
 {% block nav %}
 
@@ -17,10 +21,9 @@
             <a href="/"><img class="navbar-logo" src="/static/images/logo.png" alt="Logo"></a>
         </li>
         <li><a href="/" class="underline">Home</a></li>
-        <li><a href="#" class="underline">Statistics</a></li>
-        <li><a href="#" class="underline">About</a></li>
-        <li><a href="#" class="underline">Log out</a></li>
-        <li><a href="#" class="underline"></a></li>
+        <li><a href="/settings" class="underline">Settings</a></li>
+        <li><a href="/about" class="underline">About</a></li>
+        <li><a href="/login" class="underline">Log out</a></li>
     </ul>
 
     <!-- Horizontal -->

@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="/static/homepage.css">
 {% endblock %}
 
+{% block scripts %}
+    <script src="/static/home.js" defer></script>
+    <script src="/static/navbar.js" defer></script>
+{% endblock %}
+
 {% block main %}
 
 <main>
@@ -20,7 +25,7 @@
         <div class="wrap">
 
             <div class="imgs">
-                <img id="profile_img" src="/static/images/head.png" alt="Profile">
+                <img class="{{ information.gender }}" id="profile_img" src="/static/images/head.png" alt="Profile">
     
                 <div class="image-container">
                     <img id="chest_img" src="/static/images/chest.png" alt="Lungs">
