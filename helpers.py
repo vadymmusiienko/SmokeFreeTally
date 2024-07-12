@@ -13,6 +13,32 @@ def execute(sql_query, params=()):
     conn.close()
     return rows
 
+"""Change user's lungs depending on how many total logs they have"""
+def check_lungs(total_logs):
+    # Different lungs skins
+    lungs_1 = "lungs_1.png"
+    lungs_2 = "lungs_2.png"
+    lungs_3 = "lungs_3.png"
+    lungs_4 = "lungs_4.png"
+    lungs_5 = "lungs_5.png"
+
+    # Determine which skin to use and return a path to it
+    if total_logs < 5:
+        return lungs_1
+    
+    elif total_logs < 10:
+        return lungs_2
+    
+    elif total_logs < 15:
+        return lungs_3
+    
+    elif total_logs < 30:
+        return lungs_4
+    
+    else: 
+        return  lungs_5
+
+
 
 """Ensures the user provided the required information"""
 def settings_required(f):

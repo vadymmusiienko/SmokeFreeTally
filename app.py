@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 import sqlite3
 
 # My libraries
-from helpers import login_required, settings_required, execute
+from helpers import login_required, settings_required, execute, check_lungs
 
 """Configure flask"""
 app = Flask(__name__)
@@ -170,6 +170,9 @@ def index():
         else:
             disabled = False
 
+        # Change user's lungs with progress
+        lungs = check_lungs(total_logs)
+
         # Create a dictionary with the informatoin
         information = {
             "cigarettes_not_smoked": cigarettes_not_smoked,
@@ -182,6 +185,7 @@ def index():
             "disabled": disabled,
             "last_log": last_log,
             "gender": gender,
+            "lungs": lungs,
         }
 
         return render_template("index.html", information=information)
@@ -340,6 +344,11 @@ def settings():
         query = "SELECT * FROM user_info WHERE user_id = ?"
         user_info = execute(query, (user_id,))
 
+        # Change user's lungs with progress
+        query = "SELECT total_logs FROM log_history WHERE user_id = ?"
+        total_logs = execute(query, (user_id,))[0][0]
+        lungs = check_lungs(total_logs)
+
         # Make a dictionary with all the information
         if user_info:
             user_info = user_info[0]
@@ -350,6 +359,7 @@ def settings():
                 "cigarettes_per_day": user_info[4],
                 "pack_cost": user_info[5],
                 "gender": user_info[6],
+                "lungs": lungs,
             }
         else:
             user_information = None

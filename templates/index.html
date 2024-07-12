@@ -25,14 +25,14 @@
         <div class="wrap">
 
             <div class="imgs">
-                <img class="{{ information.gender }}" id="profile_img" src="/static/images/head.png" alt="Profile">
+                <img class="{{ information.gender }}" id="profile_img" src="/static/images/person/head.png" alt="Profile">
     
                 <div class="image-container">
-                    <img id="chest_img" src="/static/images/chest.png" alt="Lungs">
-                    <img id="lungs_img" src="/static/images/lungs_1.png" alt="Chest">
+                    <img id="chest_img" src="/static/images/person/chest.png" alt="Lungs">
+                    <img id="lungs_img" src="/static/images/person/{{ information.lungs }}" alt="Chest">   <!-- todo: lungs3 -->
                 </div>
     
-                <img id="legs_img" src="/static/images/legs.png" alt="Legs">
+                <img id="legs_img" src="/static/images/person/legs.png" alt="Legs">
             </div>
     
             <!-- Information -->
@@ -76,17 +76,16 @@
                 <ul class="details">
                     
                     <li class="first-row">
-                        <img src="/static/images/start.png" alt="Month">
-                        <img src="/static/images/money_bw.png" alt="Money">
-                        <img src="/static/images/thousand_bw.png" alt="Thousand">
+                        <img src="/static/images/achievements/start.png" alt="Month">
+                        <img src="/static/images/achievements/money_bw.png" alt="Money">
+                        <img src="/static/images/achievements/thousand_bw.png" alt="Thousand">
                     </li>
     
                     <li class="second-row">
-                        <img src="/static/images/month_bw.png" alt="Month">
-                        <img src="/static/images/lungs_bw.png" alt="Money">
-                        <img src="/static/images/winner_bw.png" alt="Thousand">
+                        <img src="/static/images/achievements/month_bw.png" alt="Month">
+                        <img src="/static/images/achievements/lungs_bw.png" alt="Money">
+                        <img src="/static/images/achievements/winner_bw.png" alt="Thousand">
                     </li>
-    
     
                 </ul>
     
