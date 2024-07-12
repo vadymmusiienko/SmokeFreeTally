@@ -34,7 +34,7 @@ def check_lungs(total_logs):
     
     elif total_logs < 30:
         return lungs_4
-    
+
     else: 
         return  lungs_5
 

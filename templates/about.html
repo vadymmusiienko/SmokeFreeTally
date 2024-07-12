@@ -1,2 +1,55 @@
 {% extends "navbar_layout.html" %}
-about page here
+
+{% block title %}
+    About
+{% endblock %}
+
+{% block styles %}
+    <!-- Styles for navbar -->
+    <link rel="stylesheet" href="/static/navbar.css">
+    <link rel="stylesheet" href="/static/settings.css">
+{% endblock %}
+
+{% block main %}
+<main>
+    <section class="card">
+
+        <div class="wrap" style="justify-content: flex-start;">
+                
+            <div class="info">
+    
+                <!-- Title -->
+                <div class="title" style="font-size: 1.9rem;">
+                    <h2>About me</h2>
+                </div>
+    
+                <!-- Heading of a section of the settings -->
+                <div class="heading" style="font-size: 1.7rem;">
+                    <h4>SmokeFreeTally</h4>
+                </div>
+    
+                <div class="section">
+    
+                    <div style="font-size: 1.4rem;">My name: Vadym Musiienko</div>
+    
+                    <div style="font-size: 1.4rem;">My Country: Ukraine</div>
+    
+                    <div style="font-size: 1.4rem;">My City: Kyiv</div>
+    
+                    <div style="font-size: 1.4rem;">My GitHub: vadymmusiienko</div>
+    
+                    <div style="font-size: 1.4rem;">My EdX: vadymmusiienko</div>
+    
+                    <div style="font-size: 1.4rem;">Date: Jul 12, 2024</div>
+    
+                </div>
+                
+            </div>
+
+        </div>
+    
+    </section>
+</main>
+
+
+{% endblock %}

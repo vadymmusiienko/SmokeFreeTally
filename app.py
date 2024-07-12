@@ -359,12 +359,11 @@ def settings():
                 "cigarettes_per_day": user_info[4],
                 "pack_cost": user_info[5],
                 "gender": user_info[6],
-                "lungs": lungs,
             }
         else:
             user_information = None
 
-        return render_template("settings.html", user_information=user_information if user_information is not None else None)
+        return render_template("settings.html", user_information=user_information if user_information is not None else None, lungs=lungs)
 
 # About page
 @app.route("/about")

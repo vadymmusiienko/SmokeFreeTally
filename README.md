@@ -65,6 +65,7 @@ SmokeFreeTally is a web application designed to help individuals who are quittin
 - `/login`: User login
 - `/settings`: User settings (personal information)
 - `/resetpassword`: Reset your password
+- `/about`: A page about te creator (me)
 
 ## Database
 

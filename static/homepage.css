@@ -210,6 +210,36 @@ main {
     box-shadow: none;
 }
 
+/* Tooltip */
+.first-row div,
+.second-row div{
+    position: relative;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: transparent;
+    color: gray;
+    text-align: center;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.first-row div:hover .tooltip,
+.second-row div:hover .tooltip{
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
 /* Mobile devices */
 @media only screen and (max-width: 700px){
     .name h2 {
