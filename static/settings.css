@@ -46,11 +46,11 @@ main {
 .wrap{
     display: flex;
     justify-content: space-evenly;
-    width: 80vw;
+    width: 60vw;
+    min-width: 650px;
     height: 75vh;
     align-items: center;
 }
-
 
 /* Person styles */
 .imgs{
@@ -59,6 +59,9 @@ main {
     justify-content: center;
     align-items: center;
     margin-left: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .imgs img{
@@ -94,6 +97,7 @@ main {
     flex-direction: column;
     justify-content: center;
     height: 100%;
+    margin-left: 10%;
 }
 
 .title{
@@ -176,10 +180,6 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
-/* TODO: make the card glow */
-
-/* TODO: work on the button and dropdown */
-
 .section select{
     margin-left: 10px;
     color: gray; /* Change the color if needed */
@@ -207,4 +207,44 @@ input[type="number"]::-webkit-inner-spin-button {
 
 #confirm:hover{
     background-color: transparent;
+}
+
+
+@media only screen and (max-width: 850px){
+    .imgs{
+        width: 125px;
+        left: initial;
+        right: 0;
+    }
+    .wrap{
+        justify-content: flex-end;
+        min-width: 270px;
+    }
+
+}
+
+@media only screen and (max-width: 600px){
+    .section > div,
+    .section input,
+    .section select{
+        font-size: 0.8rem;
+    }
+
+    .title{
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .heading{
+        font-size: 0.9rem;
+    }
+
+    .info{
+        padding-left: 10px;
+    }
+
+    .confirm-button button{
+        min-width: 100px;
+        padding: 0.4rem 0.5rem;
+    }
 }
