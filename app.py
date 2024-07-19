@@ -1,5 +1,5 @@
 # External libraries/frameworks
-from flask import Flask, render_template, redirect, request, session, flash
+from flask import Flask, render_template, redirect, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime, timedelta
@@ -144,7 +144,6 @@ def index():
             execute(query, (current_datetime, total_logs, streak, user_id))
         
         # Redirect back to the home back via GET
-        flash('Logged a smoke-free day successfully!', 'success')
         return redirect("/")
             
 
