@@ -366,6 +366,7 @@ def settings():
 
 # About page
 @app.route("/about")
+@settings_required
 def about():
     return render_template("about.html")
 
