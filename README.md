@@ -2,10 +2,6 @@
 
 SmokeFreeTally is a web application designed to help individuals who are quitting smoking. It provides users with tools to track their progress, log smoke-free days, and visualize their achievements.
 
-## Watch the Introduction Video
-
-[![Watch the video](https://img.youtube.com/vi/FWr6OR4Z1yc/maxresdefault.jpg)](https://youtu.be/FWr6OR4Z1yc)
-
 ## Table of Contents
 - [Features](#features)
 - [Installation](#installation)
